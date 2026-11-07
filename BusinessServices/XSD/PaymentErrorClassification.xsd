@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://example.local/omnichannel/errors"
+           targetNamespace="http://example.local/omnichannel/errors"
+           elementFormDefault="qualified">
+    <xs:element name="ErrorClassification" type="tns:ErrorClassificationType"/>
+
+    <xs:complexType name="ErrorClassificationType">
+        <xs:sequence>
+            <xs:element name="category" type="tns:ErrorCategoryType"/>
+            <xs:element name="retryable" type="xs:boolean"/>
+            <xs:element name="errorCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="ErrorCategoryType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BUSINESS_VALIDATION"/>
+            <xs:enumeration value="AUTHENTICATION_ERROR"/>
+            <xs:enumeration value="DOWNSTREAM_TIMEOUT"/>
+            <xs:enumeration value="DOWNSTREAM_UNAVAILABLE"/>
+            <xs:enumeration value="TECHNICAL_ERROR"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

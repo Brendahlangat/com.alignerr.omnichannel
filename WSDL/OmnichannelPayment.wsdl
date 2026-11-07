@@ -10,7 +10,7 @@
         <xs:schema targetNamespace="http://brenda.example.com/omnichannel/payment/service">
             <xs:import
                 namespace="http://brenda.example.com/omnichannel/payment"
-                schemaLocation="../XSD/OmnichannelPayment.xsd"/>
+                schemaLocation="../BusinessServices/MockPaymentProcessor/OmnichannelPayment.xsd"/>
         </xs:schema>
     </wsdl:types>
     <wsdl:message name="PaymentRequestMessage">

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://brenda.example.com/omnichannel/payment"
+           targetNamespace="http://brenda.example.com/omnichannel/payment"
+           elementFormDefault="qualified">
+    <xs:element name="RoutingDecision" type="tns:RoutingDecisionType"/>
+
+    <xs:complexType name="RoutingDecisionType">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="customerId" type="xs:string"/>
+            <xs:element name="status" type="tns:RoutingStatusType"/>
+            <xs:element name="processor" type="xs:string" minOccurs="0"/>
+            <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="correlationId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="RoutingStatusType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ROUTED"/>
+            <xs:enumeration value="REJECTED"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

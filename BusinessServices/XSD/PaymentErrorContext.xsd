@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://example.local/omnichannel/errors"
+           targetNamespace="http://example.local/omnichannel/errors"
+           elementFormDefault="qualified">
+    <xs:element name="PaymentErrorContext" type="tns:PaymentErrorContextType"/>
+
+    <xs:complexType name="PaymentErrorContextType">
+        <xs:sequence>
+            <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="processorStatus" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

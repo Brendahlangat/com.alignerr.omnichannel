@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<biz:businessServiceEntry
+    xmlns:biz="http://xmlns.oracle.com/servicebus/business/config"
+    xmlns:con="http://www.bea.com/wli/sb/services/bindings/config"
+    xmlns:ser="http://www.bea.com/wli/sb/services"
+    xmlns:tran="http://www.bea.com/wli/sb/transports"
+    xmlns:env="http://www.bea.com/wli/config/env"
+    xmlns:http="http://www.bea.com/wli/sb/transports/http"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <biz:coreEntry>
+        <biz:description>
+            Fictional local HTTP payment processor for learning and mapping tests only.
+        </biz:description>
+        <biz:binding type="native REST" xsi:type="con:NativeRestBindingType"/>
+        <biz:ws-policy>
+            <ser:binding-mode>no-policies</ser:binding-mode>
+        </biz:ws-policy>
+        <biz:xqConfiguration>
+            <ser:snippetVersion>1.0</ser:snippetVersion>
+        </biz:xqConfiguration>
+    </biz:coreEntry>
+    <biz:endpointConfig>
+        <tran:provider-id>http</tran:provider-id>
+        <tran:inbound>false</tran:inbound>
+        <tran:URI>
+            <env:value>http://localhost:9001/mock-payment-processor</env:value>
+        </tran:URI>
+        <tran:outbound-properties>
+            <tran:load-balancing-algorithm>round-robin</tran:load-balancing-algorithm>
+            <tran:retry-count>0</tran:retry-count>
+        </tran:outbound-properties>
+        <tran:provider-specific xsi:type="http:HttpEndPointConfiguration">
+            <http:outbound-properties>
+                <http:request-method>POST</http:request-method>
+            </http:outbound-properties>
+        </tran:provider-specific>
+    </biz:endpointConfig>
+</biz:businessServiceEntry>

@@ -2,17 +2,20 @@
 
 A small, fictional Oracle Service Bus-style integration exercise covering SOAP, WSDL, XML Schema, XQuery routing, error classification, and test payloads.
 
+Project owner: `@Brendahlangat`
+
 ## V3 design
 
-V3 keeps the original, user-authored `XSD/OmnichannelPayment.xsd` unchanged. It applies a simple OSB-style separation between the SOAP contract, proxy-service request/response flow, routing logic, and downstream Business Services. The EquitySoa repository informed this high-level separation only; no repository-specific endpoints, credentials, customer data, or SOA Suite deployment artifacts are included.
+V3 keeps the original, user-authored payment schema unchanged. It applies a simple OSB-style separation between the SOAP contract, proxy-service request/response flow, routing logic, and downstream Business Services. All customers, transactions, endpoints, and processor data in this project are fictional and specific to this learning project; no production banking data or credentials are included.
 
 ## Project contents
 
 - `XSD/OmnichannelPayment.xsd` defines the request and response contracts.
 - `WSDL/OmnichannelPayment.wsdl` exposes the document/literal `processPayment` SOAP operation.
-- `XQuery/DeterminePaymentRoute.xqy` validates routing inputs and builds a routing decision.
-- `XQuery/ClassifyPaymentError.xqy` classifies errors and conservatively determines retry safety.
+- `Transformation/DeterminePaymentRoute.xqy` validates routing inputs and builds a routing decision.
+- `Transformation/ClassifyPaymentError.xqy` classifies errors and conservatively determines retry safety.
 - `Pipelines/PaymentPipeline-design.md` describes the intended OSB pipeline flow.
+- `OSB/` mirrors the provider/requester project layout for later work in Oracle tooling; it is a structural scaffold, not native OSB configuration.
 - `TestData/` contains fictional valid and invalid request examples.
 - `Documentation/` contains the business rules and a high-level architecture overview.
 

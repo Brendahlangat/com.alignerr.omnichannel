@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://example.local/omnichannel/processor"
+           targetNamespace="http://example.local/omnichannel/processor"
+           elementFormDefault="qualified">
+    <xs:element name="ProcessorPaymentRequest" type="tns:ProcessorPaymentRequestType"/>
+    <xs:element name="ProcessorPaymentResponse" type="tns:ProcessorPaymentResponseType"/>
+
+    <xs:complexType name="ProcessorPaymentRequestType">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="customerId" type="xs:string"/>
+            <xs:element name="channel" type="xs:string"/>
+            <xs:element name="paymentType" type="xs:string"/>
+            <xs:element name="amount" type="xs:decimal"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="destinationAccount" type="xs:string"/>
+            <xs:element name="customerTier" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProcessorPaymentResponseType">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="processor" type="xs:string" minOccurs="0"/>
+            <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="correlationId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

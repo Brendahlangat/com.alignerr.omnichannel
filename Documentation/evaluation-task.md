@@ -1,17 +1,37 @@
-# Evaluation task: Round 1
+# Evaluation task: add a payment limit
 
-I am reviewing an Oracle Service Bus-style omnichannel payment gateway. The `DeterminePaymentRoute.xqy` file makes routing decisions for MOBILE, USSD, WEB, AGENT, and merchant payments.
+## What to do
 
-Review the XQuery against the business rules in `Documentation/business-rules.md` and schema in `XSD/OmnichannelPayment.xsd`.
+Update the payment routing so that a payment over **EUR 1,000,000** is rejected.
 
-Identify correctness, validation, namespace, type-safety, routing-precedence, correlation-ID, and error-handling issues. Then provide a corrected OSB-compatible XQuery.
+- Return status `REJECTED` and error code `PAY-VAL-009`.
+- Explain in the error message that the amount is over the limit.
+- Do not send a rejected payment to a processor.
+- An amount of exactly EUR 1,000,000 is allowed and goes to `MANUAL_REVIEW`.
+- Amounts over EUR 10,000 and up to EUR 1,000,000 continue to go to
+  `MANUAL_REVIEW`.
+- Keep all existing validation and routing rules working as they do now.
 
-Requirements:
-1. Amount must be greater than zero.
-2. Payments over EUR 10,000 must route to MANUAL_REVIEW.
-3. MERCHANT_PAYMENT routes to MERCHANT_PAYMENT_PROCESSOR unless manual review applies first.
-4. MOBILE and USSD route to MOBILE_PAYMENT_PROCESSOR.
-5. WEB routes to WEB_PAYMENT_PROCESSOR.
-6. AGENT routes to AGENT_PAYMENT_PROCESSOR.
-7. Unsupported input must not silently reach a processor.
-8. Explain every material change.
+## Files to update
+
+1. `Transformation/DeterminePaymentRoute.xsl` - add the amount-limit check.
+   Check it after the existing input validations and before the
+   `MANUAL_REVIEW` route.
+2. `Documentation/business-rules.md` and `Pipelines/PaymentPipeline-design.md`
+   - explain the new limit.
+3. `TestData/` - add one fictional example for exactly EUR 1,000,000 and one
+   for an amount just above the limit. State the expected result for each.
+
+Keep the amount as `xs:decimal` in the existing schema so the routing logic can
+return `PAY-VAL-009`. Use XSLT 1.0, and do not add frameworks, real payment
+details, production endpoints, or credentials.
+
+## How to check your work
+
+- EUR 1,000,000 -> `ROUTED` to `MANUAL_REVIEW`.
+- EUR 1,000,000.01 -> `REJECTED` with `PAY-VAL-009` and no processor.
+- Other existing routes and validation errors still work.
+- The documentation and examples match the routing behavior.
+
+This project is a learning example, not a deployable Oracle Service Bus
+application.
