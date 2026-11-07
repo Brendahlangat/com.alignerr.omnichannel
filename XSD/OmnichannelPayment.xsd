@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://brenda.example.com/omnichannel/payment" targetNamespace="http://brenda.example.com/omnichannel/payment" elementFormDefault="qualified">
+    <xs:element name="PaymentRequest" type="tns:PaymentRequestType"/>
+    <xs:element name="PaymentResponse" type="tns:PaymentResponseType"/>
+    <xs:complexType name="PaymentRequestType">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="customerId" type="xs:string"/>
+            <xs:element name="channel" type="tns:ChannelType"/>
+            <xs:element name="paymentType" type="tns:PaymentType"/>
+            <xs:element name="amount" type="xs:decimal"/>
+            <xs:element name="currency" type="xs:string"/>
+            <xs:element name="destinationAccount" type="xs:string"/>
+            <xs:element name="customerTier" type="tns:CustomerTierType"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="ChannelType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MOBILE"/>
+            <xs:enumeration value="USSD"/>
+            <xs:enumeration value="WEB"/>
+            <xs:enumeration value="AGENT"/>
+            <xs:enumeration value="MERCHANT_API"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PaymentType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ACCOUNT_TRANSFER"/>
+            <xs:enumeration value="BILL_PAYMENT"/>
+            <xs:enumeration value="MERCHANT_PAYMENT"/>
+            <xs:enumeration value="WALLET_TRANSFER"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="CustomerTierType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="STANDARD"/>
+            <xs:enumeration value="PREMIUM"/>
+            <xs:enumeration value="CORPORATE"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="PaymentResponseType">
+        <xs:sequence>
+            <xs:element name="transactionId" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="processor" type="xs:string" minOccurs="0"/>
+            <xs:element name="errorCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="message" type="xs:string"/>
+            <xs:element name="correlationId" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

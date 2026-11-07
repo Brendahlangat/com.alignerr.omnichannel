@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+ xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ xmlns:tns="http://brenda.example.com/omnichannel/payment/service"
+ xmlns:pay="http://brenda.example.com/omnichannel/payment"
+ targetNamespace="http://brenda.example.com/omnichannel/payment/service">
+  <types><xs:schema><xs:import namespace="http://brenda.example.com/omnichannel/payment" schemaLocation="../XSD/OmnichannelPayment.xsd"/></xs:schema></types>
+  <message name="PaymentRequestMessage"><part name="parameters" element="pay:PaymentRequest"/></message>
+  <message name="PaymentResponseMessage"><part name="parameters" element="pay:PaymentResponse"/></message>
+  <portType name="OmnichannelPaymentPortType"><operation name="processPayment"><input message="tns:PaymentRequestMessage"/><output message="tns:PaymentResponseMessage"/></operation></portType>
+  <binding name="OmnichannelPaymentSoapBinding" type="tns:OmnichannelPaymentPortType"><soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/><operation name="processPayment"><soap:operation soapAction="processPayment"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation></binding>
+  <service name="OmnichannelPaymentService"><port name="OmnichannelPaymentPort" binding="tns:OmnichannelPaymentSoapBinding"><soap:address location="http://localhost:7001/payment/process"/></port></service>
+</definitions>

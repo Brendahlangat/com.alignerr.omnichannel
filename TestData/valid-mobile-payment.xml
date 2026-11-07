@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PaymentRequest xmlns="http://brenda.example.com/omnichannel/payment">
+    <transactionId>TXN-2026-10001</transactionId>
+    <customerId>CUST-1001</customerId>
+    <channel>MOBILE</channel>
+    <paymentType>WALLET_TRANSFER</paymentType>
+    <amount>275.50</amount>
+    <currency>EUR</currency>
+    <destinationAccount>TEST-WALLET-9001</destinationAccount>
+    <customerTier>STANDARD</customerTier>
+    <description>Mobile wallet payment</description>
+</PaymentRequest>
