@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PaymentRequest xmlns="http://brenda.example.com/omnichannel/payment">
+    <transactionId>TXN-2026-10004</transactionId>
+    <customerId>CUST-1004</customerId>
+    <channel>WEB</channel>
+    <paymentType>ACCOUNT_TRANSFER</paymentType>
+    <amount>850.00</amount>
+    <currency>EUR</currency>
+    <destinationAccount>TEST-ACCOUNT-8004</destinationAccount>
+    <customerTier>PREMIUM</customerTier>
+</PaymentRequest>

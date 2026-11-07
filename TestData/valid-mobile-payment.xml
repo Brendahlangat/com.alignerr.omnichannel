@@ -8,5 +8,5 @@
     <currency>EUR</currency>
     <destinationAccount>TEST-WALLET-9001</destinationAccount>
     <customerTier>STANDARD</customerTier>
-    <description>Mobile wallet payment</description>
+    <description>Fictional mobile wallet payment</description>
 </PaymentRequest>
